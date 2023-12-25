@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  pgadmin:
+    container_name: fligt-pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@test.com
+      PGADMIN_DEFAULT_PASSWORD: pgadmin
+      PGADMIN_LISTEN_ADDRESS: 0.0.0.0
+      PGADMIN_LISTEN_PORT: 5050
+    ports:
+      - "5050:5050"
+    networks:
+      - pg
+
+  postgres:
+    container_name: flight-postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      POSTGRES_DB: local
+    ports:
+      - "5434:5432"
+    networks:
+      - pg
+
+networks:
+  pg:
+    driver: bridge

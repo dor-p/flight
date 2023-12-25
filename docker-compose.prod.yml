@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    environment:
+      - RUNNING_IN_DOCKER=true
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/varcard-be/app
+    networks:
+      - pg
+
+networks:
+  pg:
+    driver: bridge
