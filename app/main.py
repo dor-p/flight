@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException
 import os
 from fastapi.middleware.cors import CORSMiddleware
+from api.endpoints import flight_attendants
 
 # Add CORS middleware
 # origins = [
@@ -32,11 +33,12 @@ app.add_middleware(
 )
 
 app.include_router(search.router)
+app.include_router(flight_attendants.router)
 
 
-@app.get("/")
+@app.get("/elisabeth")
 def read_root():
-    return {"Hello": "World"}
+    return {"Hi": "Flight Attendant! :))))"}
 
 
 @app.on_event("startup")
